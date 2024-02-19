@@ -44,9 +44,19 @@ class _LogInState extends State<LogIn> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(_isLogin ? 'Log In' : 'Sign Up', style: const TextStyle(fontSize: 25)),
-                loginField(_emailController, labelText: "Email", hintText: "Enter valid email like abc@gmail.com"),
-                loginField(_passwordController, labelText: "Password", hintText: "Enter secure password", obscure: true),
+                Text(
+                  _isLogin ? 'Log In' : 'Sign Up',
+                  style: const TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                loginField(_emailController,
+                    labelText: "Email",
+                    hintText: "Enter valid email like abc@gmail.com"),
+                loginField(_passwordController,
+                    labelText: "Password",
+                    hintText: "Enter secure password",
+                    obscure: true),
                 const Padding(
                   padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                   child: Text(
@@ -54,15 +64,17 @@ class _LogInState extends State<LogIn> {
                       textAlign: TextAlign.center),
                 ),
                 loginButton(context,
-                    child: Text(
-                      _isLogin ? "Log in" : "Sign up"),
+                    child: Text(_isLogin ? "Log in" : "Sign up"),
                     onPressed: () => _logInOrSignUpUser(context,
                         _emailController.text, _passwordController.text)),
                 TextButton(
-                    onPressed: () => setState(() => _isLogin = !_isLogin),
-                    child: Text(
-                      _isLogin ? "New to Flutter Realm Todo? Sign up" : 'Already have an account? Log in.',
-                    )),
+                  onPressed: () => setState(() => _isLogin = !_isLogin),
+                  child: Text(
+                    _isLogin
+                        ? "New to Flutter Realm Todo? Sign up"
+                        : 'Already have an account? Log in.',
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(25),
                   child: Text(_errorMessage ?? "",
@@ -86,7 +98,8 @@ class _LogInState extends State<LogIn> {
     }
   }
 
-  void _logInOrSignUpUser(BuildContext context, String email, String password) async {
+  void _logInOrSignUpUser(
+      BuildContext context, String email, String password) async {
     final appServices = Provider.of<AppServices>(context, listen: false);
     clearError();
     try {

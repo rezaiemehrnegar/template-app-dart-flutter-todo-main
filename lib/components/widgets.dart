@@ -3,14 +3,17 @@ import 'package:flutter_todo/theme.dart';
 
 Widget formLayout(BuildContext context, Widget? contentWidget) {
   return Padding(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Container(
-          color: Colors.grey.shade100,
-          padding: const EdgeInsets.fromLTRB(50, 25, 50, 25),
-          child: Center(
-            child: contentWidget,
-          )));
+    padding: EdgeInsets.only(
+      bottom: MediaQuery.of(context).viewInsets.bottom,
+    ),
+    child: Container(
+      color: Colors.grey.shade100,
+      padding: const EdgeInsets.fromLTRB(50, 25, 50, 25),
+      child: Center(
+        child: contentWidget,
+      ),
+    ),
+  );
 }
 
 Widget loginField(TextEditingController controller,
@@ -35,12 +38,19 @@ Widget loginButton(BuildContext context,
     margin: const EdgeInsets.symmetric(vertical: 25),
     child: ElevatedButton(
       style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          textStyle: MaterialStateProperty.all<TextStyle>(
-              const TextStyle(color: Colors.white, fontSize: 20)),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)))),
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
+        ),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+        ),
+      ),
       onPressed: onPressed,
       child: child,
     ),
@@ -54,7 +64,9 @@ Widget templateButton(BuildContext context,
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 10),
     child: ElevatedButton(
-      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(color)),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(color),
+      ),
       onPressed: onPressed,
       child: Text(text),
     ),
@@ -133,60 +145,77 @@ Widget styledFloatingAddButton(BuildContext context,
 
 extension ShowSnack on SnackBar {
   void show(BuildContext context, {int durationInSeconds = 15}) {
-  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(this);
-  Future.delayed(Duration(seconds: durationInSeconds)).then((value) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-  });
-}
+    ScaffoldMessenger.of(context).showSnackBar(this);
+    Future.delayed(Duration(seconds: durationInSeconds)).then((value) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    });
+  }
 }
 
 SnackBar infoMessageSnackBar(BuildContext context, String message) {
   return SnackBar(
-      behavior: SnackBarBehavior.floating,
-      elevation: 0,
-      backgroundColor: Colors.transparent,
-      margin: const EdgeInsets.only(bottom: 200.0),
-      dismissDirection: DismissDirection.none,
-      content: SizedBox(
-          height: 105,
-          child: Center(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: infoBoxDecoration(context),
-              child: Text(message,
-                  style: infoTextStyle(context), textAlign: TextAlign.center),
-            ),
-          )));
+    behavior: SnackBarBehavior.floating,
+    elevation: 0,
+    backgroundColor: Colors.transparent,
+    margin: const EdgeInsets.only(bottom: 200.0),
+    dismissDirection: DismissDirection.none,
+    content: SizedBox(
+      height: 105,
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: infoBoxDecoration(context),
+          child: Text(
+            message,
+            style: infoTextStyle(context),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    ),
+  );
 }
 
 SnackBar errorMessageSnackBar(
     BuildContext context, String title, String message) {
   return SnackBar(
-      behavior: SnackBarBehavior.floating,
-      elevation: 0,
-      backgroundColor: Colors.transparent,
-      margin: const EdgeInsets.only(bottom: 200.0),
-      dismissDirection: DismissDirection.none,
-      content: SizedBox(
-          height: 105,
-          child: Center(
-            child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: errorBoxDecoration(context),
-                child: Column(
-                  children: [
-                    Text(title, style: errorTextStyle(context, bold: true)),
-                    Expanded(
-                        child: Text(message, style: errorTextStyle(context))),
-                  ],
-                )),
-          )));
+    behavior: SnackBarBehavior.floating,
+    elevation: 0,
+    backgroundColor: Colors.transparent,
+    margin: const EdgeInsets.only(bottom: 200.0),
+    dismissDirection: DismissDirection.none,
+    content: SizedBox(
+      height: 105,
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: errorBoxDecoration(context),
+          child: Column(
+            children: [
+              Text(
+                title,
+                style: errorTextStyle(context, bold: true),
+              ),
+              Expanded(
+                child: Text(
+                  message,
+                  style: errorTextStyle(context),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
 }
 
 Container waitingIndicator() {
   return Container(
     color: Colors.black.withOpacity(0.2),
-    child: const Center(child: CircularProgressIndicator()),
+    child: const Center(
+      child: CircularProgressIndicator(),
+    ),
   );
 }
