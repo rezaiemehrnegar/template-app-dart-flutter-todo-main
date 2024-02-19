@@ -39,11 +39,12 @@ class RealmServices with ChangeNotifier {
         );
       } else {
         mutableSubscriptions.add(
-            realm.query<Item>(
-              r'owner_id == $0',
-              [currentUser?.id],
-            ),
-            name: queryMyItemsName);
+          realm.query<Item>(
+            r'owner_id == $0',
+            [currentUser?.id],
+          ),
+          name: queryMyItemsName,
+        );
       }
     });
     await realm.subscriptions.waitForSynchronization();
@@ -81,8 +82,12 @@ class RealmServices with ChangeNotifier {
   }
 
   void createItem(String summary, bool isComplete) {
-    final newItem =
-        Item(ObjectId(), summary, currentUser!.id, isComplete: isComplete);
+    final newItem = Item(
+      ObjectId(),
+      summary,
+      currentUser!.id,
+      isComplete: isComplete,
+    );
     realm.write<Item>(
       () => realm.add<Item>(newItem),
     );
