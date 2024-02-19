@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 appThemeData() {
   return ThemeData(
-          primarySwatch: forestGreenColor,
-          backgroundColor: mistColor,
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: forestGreenColor,
-          ),
-          errorColor: darkRedColor)
-      .copyWith(
+    primarySwatch: forestGreenColor,
+    backgroundColor: mistColor,
+    colorScheme: ColorScheme.fromSwatch(
+      primarySwatch: forestGreenColor,
+    ),
+    errorColor: darkRedColor,
+  ).copyWith(
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: Colors.blue,
@@ -24,7 +24,10 @@ appThemeData() {
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
         textStyle: MaterialStateProperty.all<TextStyle>(
-            const TextStyle(color: Colors.white)),
+          const TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
     ),
   );
@@ -35,25 +38,28 @@ headerFooterBoxDecoration(BuildContext context, bool isHeader) {
   return BoxDecoration(
     color: theme.backgroundColor,
     border: Border(
-        top: isHeader
-            ? BorderSide.none
-            : BorderSide(
-                width: 2,
-                color: theme.primaryColor,
-              ),
-        bottom: isHeader
-            ? BorderSide(
-                width: 2,
-                color: theme.primaryColor,
-              )
-            : BorderSide.none),
+      top: isHeader
+          ? BorderSide.none
+          : BorderSide(
+              width: 2,
+              color: theme.primaryColor,
+            ),
+      bottom: isHeader
+          ? BorderSide(
+              width: 2,
+              color: theme.primaryColor,
+            )
+          : BorderSide.none,
+    ),
   );
 }
 
 errorBoxDecoration(BuildContext context) {
   final theme = Theme.of(context);
   return BoxDecoration(
-    border: Border.all(color: Colors.black),
+    border: Border.all(
+      color: Colors.black,
+    ),
     color: theme.backgroundColor,
     borderRadius: const BorderRadius.all(
       Radius.circular(8),
@@ -77,8 +83,9 @@ infoBoxDecoration(BuildContext context) {
 errorTextStyle(BuildContext context, {bool bold = false}) {
   final theme = Theme.of(context);
   return TextStyle(
-      color: theme.errorColor,
-      fontWeight: bold ? FontWeight.bold : FontWeight.normal);
+    color: theme.errorColor,
+    fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+  );
 }
 
 infoTextStyle(BuildContext context, {bool bold = false}) {
