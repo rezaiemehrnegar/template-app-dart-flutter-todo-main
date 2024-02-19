@@ -6,7 +6,9 @@ appThemeData() {
   return ThemeData(
           primarySwatch: forestGreenColor,
           backgroundColor: mistColor,
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: forestGreenColor),
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: forestGreenColor,
+          ),
           errorColor: darkRedColor)
       .copyWith(
     textButtonTheme: TextButtonThemeData(
@@ -35,9 +37,15 @@ headerFooterBoxDecoration(BuildContext context, bool isHeader) {
     border: Border(
         top: isHeader
             ? BorderSide.none
-            : BorderSide(width: 2, color: theme.primaryColor),
+            : BorderSide(
+                width: 2,
+                color: theme.primaryColor,
+              ),
         bottom: isHeader
-            ? BorderSide(width: 2, color: theme.primaryColor)
+            ? BorderSide(
+                width: 2,
+                color: theme.primaryColor,
+              )
             : BorderSide.none),
   );
 }
@@ -45,17 +53,25 @@ headerFooterBoxDecoration(BuildContext context, bool isHeader) {
 errorBoxDecoration(BuildContext context) {
   final theme = Theme.of(context);
   return BoxDecoration(
-      border: Border.all(color: Colors.black),
-      color: theme.backgroundColor,
-      borderRadius: const BorderRadius.all(Radius.circular(8)));
+    border: Border.all(color: Colors.black),
+    color: theme.backgroundColor,
+    borderRadius: const BorderRadius.all(
+      Radius.circular(8),
+    ),
+  );
 }
 
 infoBoxDecoration(BuildContext context) {
   final theme = Theme.of(context);
   return BoxDecoration(
-      border: Border.all(color: Colors.black),
-      color: theme.backgroundColor,
-      borderRadius: const BorderRadius.all(Radius.circular(8)));
+    border: Border.all(
+      color: Colors.black,
+    ),
+    color: theme.backgroundColor,
+    borderRadius: const BorderRadius.all(
+      Radius.circular(8),
+    ),
+  );
 }
 
 errorTextStyle(BuildContext context, {bool bold = false}) {
@@ -67,12 +83,16 @@ errorTextStyle(BuildContext context, {bool bold = false}) {
 
 infoTextStyle(BuildContext context, {bool bold = false}) {
   return TextStyle(
-      color: Colors.black,
-      fontWeight: bold ? FontWeight.bold : FontWeight.normal);
+    color: Colors.black,
+    fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+  );
 }
 
 boldTextStyle() {
-  return const TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
+  return const TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+  );
 }
 
 MaterialColor forestGreenColor = MaterialColor(
